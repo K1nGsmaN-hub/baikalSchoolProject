@@ -1,0 +1,105 @@
+@import "reset.css";
+body {
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    background-color: #00b894;
+}
+
+.block-switch {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 350px;
+    height: 57px;
+    margin: 40px 0 150px;
+}
+.block-switch .switch-indicator {
+    position: absolute;
+    display: block;
+    width: 40%;
+    height: 3px;
+    border-radius: 3px;
+    background-color: #fff;
+    bottom: -10px;
+    left: 2.5%;
+    transition: left 0.3s ease;
+}
+
+.switch__item {
+    width: 45%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #019678;
+    cursor: pointer;
+}
+.switch__item span {
+    font-size: 20px;
+    color: #e0e0e0;
+}
+
+form {
+    position: absolute;
+    z-index: -2;
+    opacity: 0;
+}
+
+form.form-auth-active {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s linear;
+}
+form.form-auth-active  input {
+    font-family: 'Open Sans';
+}
+form.form-auth-active  .text-field {
+    border: none;
+    margin-bottom: 20px;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #00cec9;
+    color: #fff;
+}
+::-webkit-input-placeholder {color: #e0e0e0;}
+:-ms-input-placeholder {color: #e0e0e0;}
+::-moz-placeholder {color: #e0e0e0;}
+::placeholder {color: #e0e0e0;}
+form.form-auth-active .signup_submit,
+form.form-auth-active .signin_submit{
+    font-size: 18px;
+    padding: 15px;
+    width: 209px;
+    border: none;
+    border-radius: 5px;
+    color: #e0e0e0;
+    background-color: #007e65;
+}
+form.form-auth-active .signin_submit {
+    width: 150px;
+}
+h2.auth-title {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+a.auth-button {
+    text-decoration: none;
+    display: block;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 5px;
+    color: #e0e0e0;
+    background-color: #007e65;
+}

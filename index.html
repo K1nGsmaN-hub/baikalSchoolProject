@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="block-switch">
+        <div class="switch__item switch__signup switch-active">
+            <span>Регистрация</span>
+        </div>
+        <div class="switch__item switch__signin switch-active">
+            <span>Вход</span>
+        </div>
+        <div class="switch-indicator"></div>
+    </div>
+    <form action="add_user.php" method="POST" class="signup form-auth-active">
+        <input type="text" name="inputLogin" placeholder="Введите имя" class="signup_login text-field">
+        <input type="password" name="inputPassword" placeholder="Введите пароль" class="signup_password text-field">
+        <input type="email" name="inputEmail" placeholder="Введите Email" class="signup_email text-field">
+        <input type="submit" value="Зарегистрироваться" name="buttonSubmit" class="signup_submit">
+    </form>
+    <form action="add_user.php" method="POST" class="signin">
+        <input type="text" name="inputLogin" placeholder="Введите имя или email" class="signin_login text-field">
+        <input type="password" name="inputPassword" placeholder="Введите пароль" class="signin_password text-field">
+        <input type="submit" value="Войти" name="buttonSubmit" class="signup_submit">
+    </form>
+
+    <script src="script/main.js"></script>
+</body>
+</html>
