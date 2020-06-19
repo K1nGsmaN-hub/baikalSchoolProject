@@ -9,6 +9,76 @@ body {
     background-color: #00b894;
 }
 
+/* main.php */
+
+body.main {
+    overflow: auto;
+}
+.wrapper {
+    max-width: 1140px;
+    width: 100%;
+    margin: o auto;
+    padding: 0 10px;
+}
+body.main header {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+body.main header::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: #55efc4;
+}
+body.main header nav.menu {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    min-height: 80px;
+    align-items: center;
+    margin: 0 auto;
+}
+body.main header nav.menu .menu__logo img {
+    width: 60px;
+    height: auto;
+}
+body.main header nav.menu .menu__links ul {
+    display: flex;
+}
+body.main header nav.menu .menu__links ul li {
+    font-size: 18px;
+    margin-right: 20px;
+    color: #fff;
+}
+body.main header nav.menu .menu__links ul li:last-child {
+    margin-right: 0;
+}
+body.main header nav.menu .menu__links ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 7px 10px;
+    border-radius: 5px;
+    background-color: #53e4bb;
+
+}
+body.main section.content {
+    margin-top: 100px;
+}
+
+body.main section.content p{
+    line-height: 1.5em;
+}
+
+/* index.html */
+
 .block-switch {
     position: relative;
     display: flex;
