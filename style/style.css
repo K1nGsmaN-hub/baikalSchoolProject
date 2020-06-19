@@ -8,75 +8,6 @@ body {
     overflow: hidden;
     background-color: #00b894;
 }
-
-/* main.php */
-
-body.main {
-    overflow: auto;
-}
-.wrapper {
-    max-width: 1140px;
-    width: 100%;
-    margin: o auto;
-    padding: 0 10px;
-}
-body.main header {
-    width: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 2;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-}
-body.main header::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background-color: #55efc4;
-}
-body.main header nav.menu {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: space-between;
-    min-height: 80px;
-    align-items: center;
-    margin: 0 auto;
-}
-body.main header nav.menu .menu__logo img {
-    width: 60px;
-    height: auto;
-}
-body.main header nav.menu .menu__links ul {
-    display: flex;
-}
-body.main header nav.menu .menu__links ul li {
-    font-size: 18px;
-    margin-right: 20px;
-    color: #fff;
-}
-body.main header nav.menu .menu__links ul li:last-child {
-    margin-right: 0;
-}
-body.main header nav.menu .menu__links ul li a {
-    text-decoration: none;
-    color: #fff;
-    padding: 7px 10px;
-    border-radius: 5px;
-    background-color: #53e4bb;
-
-}
-body.main section.content {
-    margin-top: 100px;
-}
-
-body.main section.content p{
-    line-height: 1.5em;
-}
-
 /* index.html */
 
 .block-switch {
@@ -99,7 +30,6 @@ body.main section.content p{
     left: 2.5%;
     transition: left 0.3s ease;
 }
-
 .switch__item {
     width: 45%;
     height: 100%;
@@ -115,13 +45,13 @@ body.main section.content p{
     color: #e0e0e0;
 }
 
-form {
+body.index form {
     position: absolute;
     z-index: -2;
     opacity: 0;
 }
 
-form.form-auth-active {
+body.index form.form-auth-active {
     position: relative;
     z-index: 1;
     opacity: 1;
@@ -131,10 +61,10 @@ form.form-auth-active {
     align-items: center;
     transition: opacity 0.3s linear;
 }
-form.form-auth-active  input {
+body.index form.form-auth-active  input {
     font-family: 'Open Sans';
 }
-form.form-auth-active  .text-field {
+body.index form.form-auth-active  .text-field {
     border: none;
     margin-bottom: 20px;
     padding: 15px;
@@ -147,8 +77,8 @@ form.form-auth-active  .text-field {
 :-ms-input-placeholder {color: #e0e0e0;}
 ::-moz-placeholder {color: #e0e0e0;}
 ::placeholder {color: #e0e0e0;}
-form.form-auth-active .signup_submit,
-form.form-auth-active .signin_submit{
+body.index form.form-auth-active .signup_submit,
+body.index form.form-auth-active .signin_submit{
     font-size: 18px;
     padding: 15px;
     width: 209px;
@@ -157,7 +87,7 @@ form.form-auth-active .signin_submit{
     color: #e0e0e0;
     background-color: #007e65;
 }
-form.form-auth-active .signin_submit {
+body.index form.form-auth-active .signin_submit {
     width: 150px;
 }
 h2.auth-title {
@@ -172,4 +102,118 @@ a.auth-button {
     border-radius: 5px;
     color: #e0e0e0;
     background-color: #007e65;
+}
+
+/* main.php */
+
+body.main {
+    overflow: auto;
+}
+.wrapper {
+    max-width: 1140px;
+    width: 100%;
+    margin: o auto;
+    padding: 0 10px;
+}
+body.main header {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.25);
+}
+body.main header::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: #349191;
+}
+body.main header nav.menu {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    min-height: 80px;
+    align-items: center;
+    margin: 0 auto;
+}
+body.main header nav.menu .menu__logo img {
+    width: 60px;
+    height: auto;
+}
+body.main header nav.menu .menu__links li {
+    font-size: 18px;
+    color: #fff;
+}
+
+/*modal window*/
+
+body.main header nav.menu .menu__links li.link__personal-area{
+    position: relative;
+    cursor: pointer;
+}
+body.main header nav.menu .menu__links li.link__personal-area .area__dropdown-menu {
+    display: none;
+}
+body.main header nav.menu .menu__links li.link__personal-area .area__dropdown-menu.menu-active {
+    position: absolute;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    width: 135px;
+    top: 40px;
+    right: -11px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 30px rgba(0,0,0,0.25);
+}
+body.main header nav.menu .menu__links li.link__personal-area .area__dropdown-menu.menu-active::before {
+    content: '';
+    top: -16px;
+    right: 12px;
+    position: absolute;
+    display: inline-block;
+    border: 8px solid transparent;
+    border-bottom-color: #fff;
+}
+body.main header nav.menu .menu__links li.link__personal-area .area__dropdown-menu.menu-active li {
+    color: #000;
+    margin-bottom: 10px;
+}
+body.main header nav.menu .menu__links li.link__personal-area .area__dropdown-menu.menu-active span {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #d3d3d3;
+    margin: 10px 0 20px;
+}
+body.main header nav.menu .menu__links li.link__personal-area .area__dropdown-menu.menu-active li a {
+    display: block;
+    text-decoration: none;
+    color: #000;
+}
+body.main header nav.menu .menu__links li.link__personal-area .area__dropdown-menu.menu-active li:last-child{
+    margin-bottom: 0;
+}
+body.main header nav.menu .menu__links li.link__personal-area .area__dropdown-menu.menu-active li form.menu__exit input[type='submit'] {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+
+body.main form.menu__exit {
+    position: relative;
+    z-index: 2;
+}
+body.main section.content {
+    margin-top: 100px;
+}
+
+body.main section.content p{
+    line-height: 1.5em;
 }
