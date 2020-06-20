@@ -1,13 +1,11 @@
 <?php
-    if(isset($_POST['buttonSubmitSingUp'])) {
+    if(isset($_POST['buttonSubmitSignUp'])) {
         ?>
             <!DOCTYPE html>
             <html lang="en">
             <head>
                 <style>
-                    body {
-                        justify-content: center;
-                    }
+                    body {justify-content: center;}
                 </style>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,59 +15,40 @@
             </head>
             <body>
         <?php
-        $firstName = $_POST['inputName'];
-        $surName = $_POST['inputSurname'];
-        $login = $_POST['inputLogin'];
-        $password = $_POST['inputPassword'];
-        $email = $_POST['inputEmail'];
-        echo $surName;
+            $dataSignUp = $_POST; // ALl data from the sing up form
+            
+            require "includes/db.php"; // connect to dataBase with RedBean
+            
+            $user = R::dispense('users'); // geting the table users
+            
+            $user->first_name = $dataSignUp['inputName'];
+            $user->sur_name = $dataSignUp['inputSurname'];
+            $user->login = $dataSignUp['inputLogin'];
+            $user->password = $dataSignUp['inputPassword'];
+            $user->email = $dataSignUp['inputEmail'];
+            
+            R::store($user);
 
-        require_once 'connect.php';
-        $query = "INSERT INTO `users` (id, login, firstName, surName, password, email) VALUES (NULL, '$firstName', '$surName', '$login', '$password', '$email')";
-        $result = mysqli_query($link, $query);
-        if ($result) {
-            ?>
-                <h2 class="auth-title">Регистрация прошла успешно!</h2>
-                <a href="index.html" class="signin-button auth-button">Войти</a>
-            <?php
-        } else {
-            ?>
-                <h2 class="auth-title">Прозошла ошибка :(</h2>
-                <a href="index.html" class="auth-button">Вернуться</a>
-            <?php
-            echo " ".mysqli_error($link);
-        }
     } else if (isset($_POST['buttonSubmitSignIn'])) {
-        $login = $_POST['inputLogin'];
-        $password = $_POST['inputPassword'];
+        $dataSignIn = $_POST;
 
-        require_once 'connect.php';
-        $query = "SELECT id, firstName, surName, login, password, email FROM `users` WHERE login = '$login' and password = '$password'";
-        $result = mysqli_query($link, $query);
-
-        if (!$result) {
-            echo " ".mysqli_error($link);
-            echo " ".$login." ";
-            echo " ".$password." ";
-            ?>
-                <h2 class="auth-title">Прозошла ошибка</h2>
-                <a href="index.html" class="auth-button">Вернуться</a>
-            <?php
-            echo " ".mysqli_error($link);
-            echo " ".$row['login']." ";
-            echo " ".$row['password']." ";
-        } else {
-            while ($row = mysqli_fetch_assoc($result)) {
-                if (true) {
-                    session_start();
-                    $_SESSION['id'] = $row['id'];
-                    $_SESSION['firstName'] = $row['firstName'];
-                    $_SESSION['surName'] = $row['surName'];
-                    $_SESSION['login'] = $login;
-                    $_SESSION['password'] = $password;
-                    header('Location: main.php');
-                }
+        require "includes/db.php";
+        // $user = R::dispense('users');
+        $user = R::findOne('users', 'login = ?', array($dataSignIn['inputLogin']));
+        if ($user) {
+            // login is exist
+            if ($user->password == $dataSignIn['inputPassword']) {
+                // password is true
+                session_start();
+                $_SESSION['id'] = $user->id;
+                $_SESSION['login'] = $user->login;
+                $_SESSION['firstName'] = $user->first_name;
+                $_SESSION['surName'] = $user->sur_name;
+                $_SESSION['password'] = $user->password;
+                header('Location: main.php'); 
             }
+        } else {
+            echo "Произошла ошибка. Проверьте правильность, вводимых данных.";
         }
     }
 ?>

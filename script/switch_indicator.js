@@ -14,5 +14,3 @@ buttonSignIn.addEventListener('click', function () {
     formSignUp.classList.remove('form-auth-active');
     switchIndicator.style.left = "57.5%";
 })
-
-
