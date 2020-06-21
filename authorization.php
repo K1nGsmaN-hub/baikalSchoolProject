@@ -45,6 +45,7 @@
                 $_SESSION['firstName'] = $user->first_name;
                 $_SESSION['surName'] = $user->sur_name;
                 $_SESSION['password'] = $user->password;
+                $_SESSION['email'] = $user->email;
                 header('Location: main.php'); 
             }
         } else {

@@ -1,5 +1,5 @@
-const buttonDropDownMenu = document.querySelector('.link__personal-area'), // button for open menu
-      dropDownMenu = document.querySelector('.area__dropdown-menu');       // drop down menu
+const buttonDropDownMenu = document.querySelector('.link__dropdown-menu'), // button for open menu
+      dropDownMenu = document.querySelector('.dropdown-menu__area');       // drop down menu
         
         
 buttonDropDownMenu.addEventListener('click', function () {
