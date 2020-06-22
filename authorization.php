@@ -33,7 +33,6 @@
         $dataSignIn = $_POST;
 
         require "includes/db.php";
-        // $user = R::dispense('users');
         $user = R::findOne('users', 'login = ?', array($dataSignIn['inputLogin']));
         if ($user) {
             // login is exist

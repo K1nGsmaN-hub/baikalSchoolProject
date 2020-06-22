@@ -230,6 +230,7 @@ body.main header nav.menu .menu__links li.link__dropdown-menu .dropdown-menu__ar
     border: none;
     background-color: transparent;
     padding: 0;
+    line-height: 1em;
 }
 body.main form.menu__exit {
     position: relative;
@@ -248,7 +249,6 @@ body.personal-page section.profile {
 /* personal data */
 body.personal-page section.profile .personal-data {
     padding: 20px;
-    padding-bottom: 40px;
     border-radius: 10px;
     background-color: #79858a;
     box-shadow: 0 0 15px rgba(0,0,0,0.25);
@@ -276,6 +276,122 @@ body.personal-page section.profile .personal-data .data__text ul span {
     color: rgba(0,0,0,0.5);
     margin-bottom: 10px;
 }
+body.personal-page section.profile .personal-data .data__text ul li.button-settings {
+    color: rgba(0,0,0,0.5);
+    display: inline-block;
+    padding-bottom: 2px;
+    margin: 40px 0 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    transition: color 0.3s linear;
+}
+body.personal-page section.profile .personal-data .data__text ul li.button-settings:hover {
+    cursor: pointer;
+    color: #000;
+    border-bottom: 1px solid #000;
+}
+
+        /* user settings - modal window */
+
+/* window background */
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 4;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.5);
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* window */
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active .window__content {
+    position: relative;
+    width: 30%;
+    height: auto;
+    padding: 20px 20px 40px;
+    border-radius: 10px;
+    background-color: #b2bec3;
+}
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active span {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 20px;
+    top: 20px;
+    margin: 0;
+}
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active span::before, 
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active span::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    bottom: 9px;
+    left: 0px;
+    transform: rotate(45deg);
+    background-color: #636e72;
+}
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active span::before {
+    transform: rotate(-45deg);
+}
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active .window__content .content_title {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+/* window buttons */
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active .window__content .content__buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active .window__content .content__buttons .button__item {
+    font-weight: 600;
+    color: #dfe6e9;
+    border: none;
+    width: 30%;
+    padding: 10px;
+    background-color: #9ca7ac;
+    border-bottom: 3px solid #8b9499;
+    border-top-right-radius: 5px;
+}
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active .window__content .content__buttons .button__item.item-active {
+    background-color: #636e72;
+    border-bottom: 3px solid #50595c;
+}
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active .window__content .content__buttons .button__item:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 0px;
+    margin-right: -4px;
+}
+
+/* window forms */
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active .window__content .content__form {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active .window__content .content__form.item-active {
+    position: relative;
+    z-index: 5;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: opacity 0.3s ease;
+}
 
 /* personal indicators */
 body.personal-page section.profile .personal-indicators {
@@ -295,7 +411,6 @@ body.personal-page section.profile .personal-indicators .block-switch {
 }
 
 /* content of the personal indicators */
-/* body.personal-page section.profile .personal-indicators .indicator */
 body.personal-page section.profile .personal-indicators .indicator__item {
     position: absolute;
     z-index: -2;

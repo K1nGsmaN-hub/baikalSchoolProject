@@ -1,6 +1,14 @@
-<?
+<?php
     session_start();
     require "includes/db.php";
+
+    // print user stats
+    $statsPrint = R::findOne('stats', 'id_user = ?', array($_SESSION['id'])); // find user in the stats table
+    if ($statsPrint) {
+        $user_liftings = $statsPrint->liftings;
+        $user_pushUps = $statsPrint->push_ups;
+        $user_run = $statsPrint->run;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Личный кабинет</title>
     <link rel="stylesheet" href="style/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="main personal-page">
     <header>
@@ -20,20 +28,8 @@
 
             <ul class="menu__links">
                 
-                <li class="link__dropdown-menu">
-                    <?php echo $_SESSION['firstName']." ".$_SESSION['surName']; ?>                    
-                    <ul class="dropdown-menu__area">
-                        <li><?php echo $_SESSION['login'] ?></li>
-                        <span class="horizontal_rule"></span>
-                        <li><a href="main.php">Главная</a></li>
-                        <li><a href="#">Кабинет</a></li>
-                        <li>
-                            <form action="exit.php" method="POST" class="menu__exit">
-                                <input type="submit" value="Выход" name="buttonSubmitExit">
-                            </form>
-                        </li>
-                    </ul>
-                </li>
+                <?php require "includes/nav-menu.php"; ?>
+                
             </ul>
         </nav>
     </header>
@@ -48,6 +44,27 @@
                     <li class="text_name"><?php echo $_SESSION['firstName']." ".$_SESSION['surName']; ?> </li>
                     <li class="text_info">Логин:</li><span><?php echo $_SESSION['login'] ?></span>
                     <li class="text_info">Email:</li><span><?php echo $_SESSION['email'] ?></span>
+                    <li class="text_info button-settings">Изменить</li>
+                    <div class="settings__modal-window">
+                        <div class="window__content">
+                            <span class="button-close"></span>
+                            <h4 class="content_title">Изменение</h4>
+                            <div class="content__buttons">
+                                <button id="first-button" class="button__item item-active">Пароля</button>
+                                <button id="second-button" class="button__item">Email</button>
+                            </div>
+                            <form class="content__form form-password item-active" action="" method="POST">
+                                <input class="text-field" type="text" name="currentPassword" id="" placeholder="Текущий пароль">
+                                <input class="text-field" type="text" name="newPassword" id="" placeholder="Новый пароль">
+                                <input class="buttonSubmit" type="submit" value="Изменить" name="submitPassword">
+                            </form>
+                            <form class="content__form form-email" action="" method="POST">
+                                <input class="text-field" type="text" name="newEmail" id="" placeholder="Новый email">
+                                <input class="text-field" type="text" name="currentPassword" id="" placeholder="Текущий пароль">
+                                <input class="buttonSubmit" type="submit" value="Изменить" name="submitEmail">
+                            </form>
+                        </div>
+                    </div>
                 </ul>
             </div>
         </div>
@@ -62,7 +79,7 @@
                 <div class="switch-indicator"></div>
             </div>
             <div id="first-switched-element" class="indicator__form indicator__item item-active">
-                <form action="" class="item__form" method="POST">
+                <form action="stats-processing.php" class="item__form" method="POST">
                     <p class="form__text">Подтигивания</p>
                     <input type="text" placeholder="0" name="liftings" class="text-field">
                     <p class="form__text">Отжимания</p>
@@ -75,15 +92,16 @@
             <div id="second-switched-element" class="indicator-data indicator__item">
                 <ul class="item__data">
                     <h4 class="data_title">Мои показатели за сегодня:</h4>
-                    <li>Подтягивания: 10 раз</li>
-                    <li>Отжимания: 10 раз</li>
-                    <li>Бег: 5 км</li>
+                    <li>Подтягивания: <?php echo $user_liftings; ?> раз</li>
+                    <li>Отжимания: <?php echo $user_pushUps; ?> раз</li>
+                    <li>Бег: <?php echo $user_run; ?> км</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <script src="script/dropdown_menu.js"></script>
+    <script src="script/user_settings.js"></script>
     <script src="script/switch_indicator.js"></script>
 </body>
 </html>
