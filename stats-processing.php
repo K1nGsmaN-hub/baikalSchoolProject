@@ -2,28 +2,35 @@
     session_start();
     require "includes/db.php";
 
-    //update user stats
     if (isset($_POST['submitIndicators'])) {
         $dataStats = $_POST;
 
-        $statsUser = R::findOne('stats', 'id_user = ?', array($_SESSION['id']));
-        if ($statsUser) {
-            // a user in the stats table is exist
-            $statsUser->liftings = $dataStats['liftings'];
-            $statsUser->push_ups = $dataStats['push-ups'];
-            $statsUser->run = $dataStats['run'];
+        $dayOfWeek = date("w", mktime(0,0,0,date("m"),date("d"),date("Y"))) + 1; // day of week< where 1 - Sunday
 
-            R::store($statsUser);
+        // User existence check
+        $userExist = R::exec('SELECT id_user, day_of_week FROM `stats` WHERE stats.id_user = :id_user AND day_of_week = :dayOfWeek', array(
+            'id_user'=>$_SESSION['id'],
+            'dayOfWeek'=>$dayOfWeek
+        ));
+
+        $stats = R::findOne('stats', 'id_user = ? AND day_of_week = ?', array($_SESSION['id'], $dayOfWeek));
+        if ($userExist) {
+            // a user is exist
+                $stats->liftings = $dataStats['liftings'];
+                $stats->push_ups = $dataStats['push-ups'];
+                $stats->run = $dataStats['run'];
+                $stats->date = date('Y-m-d');
+            R::store($stats);
         } else {
-            // a user in the stats table is not exist
-            $statsAdd = R::dispence('stats'); // connect to the stats table
-
-            $statsAdd->id_user = $_SESSION['id'];
-            $statsAdd->liftings = $dataStats['liftings'];
-            $statsAdd->push_ups = $dataStats['push-ups'];
-            $statsAdd->run = $dataStats['run'];
-
-            R::store($statsAdd); // send a new data for add a new user stats
+            //a user is not exist
+            $stats = R::dispense('stats');
+                $stats->id_user = $_SESSION['id'];
+                $stats->liftings = $dataStats['liftings'];
+                $stats->push_ups = $dataStats['push-ups'];
+                $stats->run = $dataStats['run'];
+                $stats->day_of_week = $dayOfWeek;
+                $stats->date = date('Y-m-d');
+            R::store($stats);
         }
     }
     header('Location: personal-area.php');

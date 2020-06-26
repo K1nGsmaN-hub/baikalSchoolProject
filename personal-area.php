@@ -18,6 +18,18 @@
     <title>Личный кабинет</title>
     <link rel="stylesheet" href="style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+        let error = '<?php echo $_SESSION['error']; ?>';
+        console.log(error);
+        let elementChanged = '<?php echo $_SESSION['setNew']; ?>';
+        console.log(elementChanged)
+        if (error) {
+            alert('Текущий пароль введен неверно!'); 
+        } else {
+            alert(elementChanged + ' был успешно изменен!');
+        }
+        
+    </script>
 </head>
 <body class="main personal-page">
     <header>
@@ -35,6 +47,9 @@
     </header>
 
     <section class="profile wrapper">
+        <div class="data__error">
+            
+        </div>
         <div class="personal-data">
             <div class="data__avatar">
                 <img src="image/user_avatar.png" alt="avatar">
@@ -53,14 +68,14 @@
                                 <button id="first-button" class="button__item item-active">Пароля</button>
                                 <button id="second-button" class="button__item">Email</button>
                             </div>
-                            <form class="content__form form-password item-active" action="" method="POST">
+                            <form class="content__form form-password item-active" action="settings-processing.php" method="POST" required>
                                 <input class="text-field" type="text" name="currentPassword" id="" placeholder="Текущий пароль">
                                 <input class="text-field" type="text" name="newPassword" id="" placeholder="Новый пароль">
                                 <input class="buttonSubmit" type="submit" value="Изменить" name="submitPassword">
                             </form>
-                            <form class="content__form form-email" action="" method="POST">
+                            <form class="content__form form-email" action="settings-processing.php" method="POST">
                                 <input class="text-field" type="text" name="newEmail" id="" placeholder="Новый email">
-                                <input class="text-field" type="text" name="currentPassword" id="" placeholder="Текущий пароль">
+                                <input class="text-field" type="text" name="currentPassword" id="" placeholder="Текущий пароль" required>
                                 <input class="buttonSubmit" type="submit" value="Изменить" name="submitEmail">
                             </form>
                         </div>
@@ -79,11 +94,11 @@
                 <div class="switch-indicator"></div>
             </div>
             <div id="first-switched-element" class="indicator__form indicator__item item-active">
-                <form action="stats-processing.php" class="item__form" method="POST">
+                <form action="stats-processing.php" class="item__form" method="POST" required>
                     <p class="form__text">Подтигивания</p>
                     <input type="text" placeholder="0" name="liftings" class="text-field">
                     <p class="form__text">Отжимания</p>
-                    <input type="text" placeholder="0" name="push-ups" class="text-field">
+                    <input type="text" placeholder="0" name="push-ups" class="text-field" required>
                     <p class="form__text">Бег (в километрах)</p>
                     <input type="text" placeholder="0" name="run" class="text-field">
                     <input type="submit" value="Отправить" name="submitIndicators" class="buttonSubmit">

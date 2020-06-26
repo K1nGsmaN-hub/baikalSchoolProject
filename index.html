@@ -17,7 +17,7 @@
         </div>
         <div class="switch-indicator"></div>
     </div>
-    <form action="authorization.php" method="POST" id="first-switched-element" class="signup item-active">
+    <form action="authorization.php" method="POST" id="first-switched-element" class="signup item-active" required>
         <input type="text" name="inputName" placeholder="Введите имя" class="signup_name text-field">
         <input type="text" name="inputSurname" placeholder="Введите фамилию" class="signup_surname text-field">
         <input type="text" name="inputLogin" placeholder="Введите логин" class="signup_login text-field">
@@ -25,7 +25,7 @@
         <input type="email" name="inputEmail" placeholder="Введите Email" class="signup_email text-field">
         <input type="submit" value="Зарегистрироваться" name="buttonSubmitSignUp" class="signup_submit buttonSubmit">
     </form>
-    <form action="authorization.php" method="POST" id="second-switched-element" class="signin">
+    <form action="authorization.php" method="POST" id="second-switched-element" class="signin" required>
         <input type="text" name="inputLogin" placeholder="Введите логин" class="signin_login text-field">
         <input type="password" name="inputPassword" placeholder="Введите пароль" class="signin_password text-field">
         <input type="submit" value="Войти" name="buttonSubmitSignIn" class="signin_submit buttonSubmit">

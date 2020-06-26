@@ -323,16 +323,17 @@ body.personal-page section.profile .personal-data .data__text ul .settings__moda
     border-radius: 10px;
     background-color: #b2bec3;
 }
-body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active span {
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active .button-close {
     position: absolute;
     width: 20px;
     height: 20px;
     right: 20px;
     top: 20px;
     margin: 0;
+    cursor: pointer;
 }
-body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active span::before, 
-body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active span::after {
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active .button-close::before, 
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active .button-close::after {
     content: '';
     position: absolute;
     width: 20px;
@@ -342,7 +343,7 @@ body.personal-page section.profile .personal-data .data__text ul .settings__moda
     transform: rotate(45deg);
     background-color: #636e72;
 }
-body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active span::before {
+body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active .button-close::before {
     transform: rotate(-45deg);
 }
 body.personal-page section.profile .personal-data .data__text ul .settings__modal-window.item-active .window__content .content_title {
