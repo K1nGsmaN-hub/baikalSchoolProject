@@ -1,0 +1,26 @@
+SELECT `id`, `first_name`, `liftings`, `push_ups`, `run` FROM `users`, `stats` WHERE users.id = stats.id_user
+day_of_week = DAYOFWEEK($data);
+
+INSERT INTO `stats`( id, id_user, liftings, push_ups, run, day_of_week, DATE ) VALUES( NULL, ( SELECT id FROM users WHERE users.id = 7 ), '5432', '5432', '543', DAYOFWEEK(CURDATE()), NOW())
+
+UPDATE `stats` SET liftings = liftings + 1, push_ups = push_ups + 1,  run = run + 1, date = NOW() WHERE id_user = 2 AND day_of_week = 2 
+
+if day_of_week is exist {
+    update stats where id = ?
+} else no {
+    insert into where id = ?
+}
+
+if day_of_week = 1  {
+    stats = 0
+}
+
+if (id_user is exist and day_of_week = 1) {
+    stats = current
+} else if (id_user is exist and day_of_week = current) {
+    // stats = stats + current when day_of_week(current()-1)
+    stat = current
+} else {
+    insert new
+}
+
